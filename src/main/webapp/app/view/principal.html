@@ -1,0 +1,48 @@
+<div ng-if="!exibirListaTimes">
+<h2 class="text-center">Teste Kelly Barros
+<button  ng-click="exibeLista()" ng-if="listaTimes.length > 0">Listar Times</button>
+</h2>
+
+
+<div class="lista-pokemons">
+    Escolha um pokemon
+    <ul>
+        <li  ng-repeat="p in pokemons | orderBy:'name'">
+               <a ng-class="{'active':p.name == pokemon.name }" ng-click="buscarPokemon(p.url)"> {{p.name}}</a>
+        </li>
+    </ul>
+</div>
+
+<div class="pokemon-selecionado" ng-if="pokemon.id">
+    <h2>{{pokemon.name}}</h2>
+    <h5>Peso:{{pokemon.weight}}</h5>
+    <h5>Selecione as Habilidades (Máximo 4):</h5>
+    <ul>
+        <li ng-click="selecionarHabilidade(h)" ng-repeat="h in pokemon.abilities | orderBy:'name'">
+             <span ng-class="{'active':h.selecionado}" > {{h.ability.name}}</span>
+        </li>
+    </ul>
+    <button type="button" ng-click="selecionarPokemon()">Confirmar seleção</button>
+</div>
+<div class="lista-pokemons" ng-if="pokemonsSelecionados.length > 0">
+    Pokemons selecionados
+    <ul>
+        <li ng-repeat="pokemon in pokemonsSelecionados | orderBy:'name'">
+               <a ng-click="buscarPokemon(pokemon.url)"> {{pokemon.name}}</a>
+               <a style="float:right;" ng-click="remover(pokemon)"> Remover</a>
+        </li>
+    </ul>
+    <input type="text" ng-model="time.nome"/>
+    <button ng-click="salvarTime()">salvar Time</button>
+</div>
+</div>
+<div ng-if="exibirListaTimes">
+    <h2 class="text-center">Teste Kelly Barros 
+    <button  ng-click="novoTime()" >Novo Time</button>
+</h2>
+<ul>
+        <li  ng-repeat="t in listaTimes | orderBy:'nome'">
+               <a ng-click="editarTime(t)"> {{t.nome}}</a>
+        </li>
+    </ul>
+</div>
